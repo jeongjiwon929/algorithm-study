@@ -1,0 +1,100 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <Windows.h>
+
+void cinema(int n) { // number의 값을 int n에 넣는다 
+   if (n == 1) { // 만약 n이 1이라면
+      printf("공조 2를 선택하셨습니다.\n"); // 출력
+      cinema(n + 5); // 1 + 5 = 6, n == 6일 때 else if (n == 6) 실행
+   } else if (n == 2) { // 만약 n이 2라면
+      printf("육사오를 선택하셨습니다.\n"); // 출력
+      cinema(n + 4); // 2 + 4 = 6, n == 6일 때 else if (n == 6) 실행
+   } else if (n == 3) { // 만약 n이 3이라면
+      printf("헌트를 선택하셨습니다.\n"); // 출력
+      cinema(n + 3); // 3 + 3 = 6, n == 6일 때 else if (n == 6) 실행
+   } else if (n == 4) { // 만약 n이 4라면
+      printf("오! 마이 고스트를 선택하셨습니다.\n"); // 출력
+      cinema(n + 2); // 4 + 2 = 6, n == 6일 때 else if (n == 6) 실행 
+   } else if (n == 5) { // 만약 n이 5라면
+      printf("블랙폰을 선택하셨습니다.\n"); // 출력 
+      cinema(n + 1); // 5 + 1 = 6, n == 6일 때 else if (n == 6) 실행
+   } else if (n == 6) { // n이 6일 때 
+      int num; // 어른의 표 갯수 선언 
+      int num1; // 청소년의 표 갯수 선언 
+      int num2; // 어린이의 표 갯수 선언
+      printf("\n"); 
+      printf("<표 가격>\n");
+      printf("어른 : ");
+      scanf("%d", &num);
+      printf("청소년 : ");
+      scanf("%d", &num1);
+      printf("어린이 : ");
+      scanf("%d", &num2);
+      int allnum = num + num1 + num2; // 총 표 갯수 합계
+      printf("\n\n총 표 갯수 : %d ", allnum); // 총 표 갯수 합계를 출력
+      printf("표가 예매 되었습니다.\n");
+
+   } else { // 1 ~ 5에서 선택하지 못했을 때 else문 실행 
+      printf("선택하시지 못했습니다.\n");
+   }
+}
+int countdown(int n1) { // 밑에서 입력한 count의 값을 int n1에 넣는다
+   if (n1 >= 0) { // n1이 0보다 크다면 if문 실행
+      printf("%d", n1); // n1의 값 출력 
+       Sleep(1000); // 1초 단위로 출력 
+       system("cls");
+      countdown(n1 - 1); // n1 - 1로 카운트 다운을 하며 0이 되면 else 문 실행 
+
+   } else { // n1이 0 이라면 else 문 실행
+      printf("cinema start"); // start를 출력
+      return 0;
+      
+   }
+}
+int main() {
+   int count; // 예매한 영화의 남은 시간을 입력하는 count 선언
+   int number; // 1 ~ 5 중에 시청하고 싶은 영화의 번호 입력하는 number 선언
+   char start[10] = "yes"; // 문자열 n과 같은 문장이 들어있는지 비교하기 위해 영화 예매를 시작하겠다는 yes 선언 
+   char stop[10] = "no"; // 문자열 n과 같은 문장이 들어있는지 비교하기 위해 영화 예매를 하지 않겠다는 no 선언
+   char n[10]; // yes와 no 중 하나를 선언, yes라면 밑에 if 문장 실행, no라면 else 문장 실행
+   printf("소마고 극장에 오신 여러분 환영 합니다.\n");
+   printf("예매 시작(yes/no) : ");
+   scanf("%s", n);
+   system("cls");
+   
+   if (strcmp(start, n) == 0) { // start 문자열과 n 문자열이 같다면 if문 실행
+      printf("TO DAY\n"); // 오늘 영화 시간표
+      printf(
+         "------------------------------------------------------------\n");
+      printf("1. 공조 2\t\n"); // 영화 이름
+      printf("[09:30]\n\n[11:30]\n\n[1:20]\n\n[3:40]\n\n[6:30]\n\n"); // 시간들 안내
+      printf("2. 육사오\t\n");
+      printf("[09:30]\n\n[11:30]\n\n[1:20]\n\n[3:40]\n\n[6:30]\n\n");
+      printf("3. 헌트\t\n");
+      printf("[09:30]\n\n[11:30]\n\n[1:20]\n\n[3:40]\n\n[6:30]\n\n");
+      printf("4. 오! 마이 고스트\t\n");
+      printf("[09:30]\n\n[11:30]\n\n[1:20]\n\n[3:40]\n\n[6:30]\n\n");
+      printf("5.블랙폰\t\n");
+      printf("[09:30]\n\n[11:30]\n\n[1:20]\n\n[3:40]\n\n[6:30]\n\n");
+
+      printf("영화 숫자를 입력해주세요(1 ~ 5) : "); // 영화 시간표를 보고 원하는 영화의 숫자를
+      scanf("%d", &number); // 입력
+      system("cls");
+      
+      cinema(number); // cinema 함수 불러옴
+      printf("남은 시간을 입력해주세요(초 단위) : "); // 남은 시간을 카운트다운 해줌 
+      scanf("%d", &count); // 초 단위로 입력
+	   
+      system("cls");
+      countdown(count); // countdown 함수 불러옴
+      
+   } else if (!strcmp(stop, n)) { // stop문자열과 n문자열이 같다면 else if문 실행
+      printf("더 좋은 서비스로 찾아뵙겠습니다.\n");
+      printf("소마고 극장을 이용해주셔서 감사합니다.");
+   }
+   else { // 그 외라면 else문 실행
+   	printf("소마고 극장을 이용해주셔서 감사합니다.");
+   } 
+
+   return 0;
+}
